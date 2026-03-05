@@ -220,7 +220,7 @@ export default function Home() {
               icon={GitHubIcon}
             />
             <SocialLink
-              href="https://linkedin.com/in/ricardo-cruz"
+              href="https://www.linkedin.com/in/ricardo-cruz-dev/"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
             />
