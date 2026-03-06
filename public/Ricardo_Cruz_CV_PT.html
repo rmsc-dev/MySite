@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ricardo Cruz – Engenheiro de Software</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f2340;
+    --teal: #1b6b72;
+    --gold: #c9942a;
+    --light: #f5f3ef;
+    --white: #ffffff;
+    --text: #2c2c2c;
+    --muted: #6b7280;
+    --rule: #d4cfc7;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 40px auto;
+    background: var(--white);
+    box-shadow: 0 8px 40px rgba(15,35,64,0.12);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 1100px;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--navy);
+    color: var(--white);
+    padding: 48px 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .name-block h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: var(--white);
+  }
+
+  .name-block h1 span {
+    display: block;
+    color: var(--gold);
+  }
+
+  .name-block .role {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .sidebar-section h2 {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(201,148,42,0.3);
+  }
+
+  .contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    word-break: break-all;
+  }
+
+  .contact-list li .icon {
+    flex-shrink: 0;
+    width: 18px;
+    margin-top: 1px;
+    color: var(--gold);
+    font-size: 13px;
+  }
+
+  .contact-list a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+  }
+
+  .contact-list a:hover { color: var(--gold); }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+  }
+
+  .skill-tag.highlight {
+    background: rgba(201,148,42,0.18);
+    border-color: rgba(201,148,42,0.4);
+    color: #f0c96e;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 48px 44px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .main-section h2 {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--teal);
+  }
+
+  .summary-text {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* Experience */
+  .job {
+    margin-bottom: 24px;
+  }
+
+  .job:last-child { margin-bottom: 0; }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 2px;
+  }
+
+  .job-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--navy);
+  }
+
+  .job-period {
+    font-size: 11.5px;
+    color: var(--muted);
+    white-space: nowrap;
+    font-weight: 400;
+    padding-top: 3px;
+  }
+
+  .job-company {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--teal);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .job-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 2px;
+  }
+
+  .job-bullets li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.55;
+  }
+
+  .job-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* Education */
+  .edu-item {
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .edu-item:last-child { margin-bottom: 0; }
+
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .edu-school {
+    font-size: 12.5px;
+    color: var(--teal);
+    font-weight: 600;
+    margin-top: 3px;
+  }
+
+  .edu-period {
+    font-size: 11.5px;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-top: 3px;
+  }
+
+  /* Certs */
+  .cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(27,107,114,0.07);
+    border: 1px solid rgba(27,107,114,0.2);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .cert-badge::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 11px;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; min-height: unset; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="name-block">
+      <h1>Ricardo<span>Cruz</span></h1>
+      <p class="role">Engenheiro Full-Stack</p>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Contacto</h2>
+      <ul class="contact-list">
+        <li>
+          <span class="icon">🌐</span>
+          <a href="https://site.omniserver.xyz/">site.omniserver.xyz</a>
+        </li>
+        <li>
+        <li>
+          <span class="icon">✉</span>
+          <a href="mailto:maniaricardo0@gmail.com">maniaricardo0@gmail.com</a>
+        </li>
+        <li>
+          <span class="icon">☎</span>
+          <span>+351 968 146 201</span>
+        </li>
+        <li>
+          <span class="icon">⌖</span>
+          <span>Faro / Silves, Portugal</span>
+        </li>
+        <li>
+          <span class="icon">⌁</span>
+          <a href="https://github.com/rmsc-dev" target="_blank">github.com/rmsc-dev</a>
+        </li>
+        <li>
+          <span class="icon">in</span>
+          <a href="https://www.linkedin.com/in/ricardo-cruz-dev/" target="_blank">linkedin.com/in/ricardo-cruz-dev</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Linguagens &amp; Frameworks</h2>
+      <div class="skills-grid">
+        <span class="skill-tag highlight">PHP / Laravel</span>
+        <span class="skill-tag highlight">React</span>
+        <span class="skill-tag highlight">JavaScript</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Go</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">C / C++</span>
+        <span class="skill-tag">C#</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Bases de Dados</h2>
+      <div class="skills-grid">
+        <span class="skill-tag highlight">MySQL</span>
+        <span class="skill-tag highlight">PostgreSQL</span>
+        <span class="skill-tag">MongoDB</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Ferramentas &amp; Plataformas</h2>
+      <div class="skills-grid">
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">GitLab / Git</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Windows</span>
+        <span class="skill-tag">MS Office</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Idiomas</h2>
+      <div class="skills-grid">
+        <span class="skill-tag highlight">Português (Nativo)</span>
+        <span class="skill-tag">Inglês (Profissional)</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="main">
+
+    <div class="main-section">
+      <h2>Perfil</h2>
+      <p class="summary-text">
+        Programador full-stack com mais de 2 anos de experiência profissional no desenvolvimento de aplicações web e móveis. Forte domínio de back-end em PHP/Laravel, front-end em React e administração de servidores Linux. Atualmente a concluir a licenciatura em Engenharia Informática, à procura de novos desafios no desenvolvimento de software.
+      </p>
+    </div>
+
+    <div class="main-section">
+      <h2>Experiência Profissional</h2>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Programador Full-Stack</span>
+          <span class="job-period">Abr 2025 – Presente</span>
+        </div>
+        <div class="job-company">Avanço Implacável · Tempo inteiro</div>
+        <ul class="job-bullets">
+          <li>Desenvolvimento de uma aplicação de reservas para restaurantes utilizando <strong>PHP/Laravel</strong>, <strong>React</strong>, <strong>Inertia.js</strong> e <strong>Tailwind CSS</strong>, entregando uma solução full-stack completa e polida.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Operador de Loja</span>
+          <span class="job-period">Abr – Set 2024 &amp; Mai – Set 2023</span>
+        </div>
+        <div class="job-company">LIDL · Tempo inteiro</div>
+        <ul class="job-bullets">
+          <li>Gestão de operações de caixa e atendimento ao cliente durante períodos de maior afluência.</li>
+          <li>Manutenção dos níveis de stock e da secção de padaria, garantindo os padrões de limpeza da loja.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Programador Full-Stack</span>
+          <span class="job-period">Abr 2021 – Dez 2022</span>
+        </div>
+        <div class="job-company">oseubackoffice · Tempo inteiro</div>
+        <ul class="job-bullets">
+          <li>Arquitetura e desenvolvimento de uma aplicação web completa utilizando o framework <strong>Laravel (PHP)</strong>, desde o desenho da base de dados até ao deployment.</li>
+          <li>Construção de uma aplicação móvel multiplataforma (iOS e Android) com <strong>React Native</strong>, consumindo a API REST do Laravel.</li>
+          <li>Escrita de suites de testes automatizados abrangentes para a aplicação web, melhorando a fiabilidade e reduzindo bugs de regressão.</li>
+          <li>Aprovisionamento e administração de <strong>servidores Linux</strong>, incluindo configuração, hardening de segurança e manutenção contínua.</li>
+          <li>Desenho e manutenção de <strong>bases de dados SQL e NoSQL</strong> (MySQL/PostgreSQL e MongoDB).</li>
+          <li>Gestão de controlo de versões e workflows de CI/CD no <strong>GitLab</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Técnico de Telecomunicações</span>
+          <span class="job-period">Ago 2019 – Abr 2021</span>
+        </div>
+        <div class="job-company">Pereira e Reis · Tempo inteiro</div>
+        <ul class="job-bullets">
+          <li>Instalação e reparação de infraestrutura de rede FTTH (fibra óptica) para clientes residenciais e comerciais.</li>
+          <li>Diagnóstico de avarias e gestão de cablagem ponto-a-ponto em múltiplos locais de projeto.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-section">
+      <h2>Formação Académica</h2>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">Licenciatura em Engenharia Informática <em style="font-style:normal; font-size:12px; color:var(--gold);">· Em curso</em></div>
+          <div class="edu-school">Instituto Superior Manuel Teixeira Gomes — Portimão</div>
+        </div>
+        <span class="edu-period">Out 2021 – Presente</span>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">Técnico de Gestão e Programação de Sistemas Informáticos</div>
+          <div class="edu-school">Escola Secundária Manuel Teixeira Gomes — Portimão</div>
+        </div>
+        <span class="edu-period">Set 2013 – Jul 2016</span>
+      </div>
+    </div>
+
+    <div class="main-section">
+      <h2>Certificações</h2>
+      <span class="cert-badge">Cisco Networking Essentials (Cisco Packet Tracer)</span>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
