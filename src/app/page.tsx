@@ -147,10 +147,7 @@ function Resume() {
       title: 'Full-Stack Developer',
       initials: 'AI',
       start: '2025',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
-      },
+      end: '2026',
     },
     {
       company: 'oseubackoffice',
